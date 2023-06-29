@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApiDemoAK.Data;
 using WebApiDemoAK.Dtos;
@@ -8,6 +9,7 @@ using WebApiDemoAK.Entities;
 
 namespace WebApiDemoAK.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class StudentController : ControllerBase
@@ -62,7 +64,9 @@ namespace WebApiDemoAK.Controllers
                 {
                     Name = dto.Name,
                     Surname = dto.Surname,
-                    Age = dto.Age
+                    Age = dto.Age,
+                     Password=dto.Password,
+                      Username=dto.Username
                 };
                 await _context.Students.AddAsync(student);
                 await _context.SaveChangesAsync();
